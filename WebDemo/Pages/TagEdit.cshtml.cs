@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace WebDemo.Pages
 {
-    public class TagDisplayModel : PageModel
+    public class TagEditModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
 
@@ -18,7 +18,7 @@ namespace WebDemo.Pages
         };
 
 
-        public TagDisplayModel(ILogger<IndexModel> logger)
+        public TagEditModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
         }
