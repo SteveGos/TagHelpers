@@ -1,6 +1,7 @@
 ### View Helper (Vh) - Tag Helper
 
-Tag Helper for displaying and editing of model properties.
+Tag Helper for displaying and editing of model properties.  The goal is to simplify the rendering of properties and 
+keep continuity in the rendering of such properties so that a common UI look and feel is established.
 
 
 **With the tag helper**
@@ -9,8 +10,8 @@ Tag Helper for displaying and editing of model properties.
 @model MyDomain.Project
 
 <div class="row form-horizontal">
-    <vh-form-display asp-for="@Model.Description" bsCol="@VhCol.md6"></vh-form-display>
-    <vh-form-display asp-for="@Model.Location" bsCol="@VhCol.md6"></vh-form-display>
+    <vh-form-display asp-for="@Model.Description" bs-Col="@VhCol.md6"></vh-form-display>
+    <vh-form-display asp-for="@Model.Location" bs-Col="@VhCol.md6"></vh-form-display>
     <vh-form-display asp-for="@Model.ProjectManager"></vh-form-display>
     <vh-form-display asp-for="@Model.AdressLine1"></vh-form-display>
     <vh-form-display asp-for="@Model.AdressLine2"></vh-form-display>
