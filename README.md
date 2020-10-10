@@ -1,4 +1,4 @@
-# View Helper (Vh) - Tag Helper
+### View Helper (Vh) - Tag Helper
 
 Tag Helper for displaying and editing of model properties.
 
@@ -63,3 +63,4 @@ Tag Helper for displaying and editing of model properties.
 
 </div>
 ```
+
