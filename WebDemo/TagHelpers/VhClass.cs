@@ -33,7 +33,12 @@ public static partial class VhClass
     /// <summary>
     /// The Bootstrap - Application Default Wrapper Div Class
     /// </summary>
-    public const string DefaultWrapperDivClass = "form-group col-12 mt-1 mb-0";
+    public const string DefaultWrapperClass = "form-group col-12 mt-1 mb-0 input-group-sm";
+
+    /// <summary>
+    /// Adds d-inline to allow tag helpers to be inline, removes col-12 from wrapper
+    /// </summary>
+    public const string DefaultWrapperInlineClass = "form-group mt-1 mb-0 input-group-sm d-inline";
 
     /// <summary>
     /// Default Validation Message Class
@@ -41,6 +46,9 @@ public static partial class VhClass
     public const string DefaultValidationMessageClass = "text-danger small";
 
     // Check Box
+
+  
+
 
     /// <summary>
     /// Default Check box Custom Class
@@ -50,12 +58,12 @@ public static partial class VhClass
     /// <summary>
     /// Default Check box Input Class
     /// </summary>
-    public const string DefaultCheckboxInputClass = "custom-control-input small";
+    public const string DefaultCheckboxInputClass = "custom-control-input";
 
     /// <summary>
     /// Default Check box Label Class
     /// </summary>
-    public const string DefaultCheckboxLabelClass = "custom-control-label font-weight-bold small";
+    public const string DefaultCheckboxLabelClass = "custom-control-label font-weight-bold font-italic small";
 
     // Radio Button
 
@@ -67,10 +75,10 @@ public static partial class VhClass
     /// <summary>
     /// Default Radio Button Input Class
     /// </summary>
-    public const string DefaultRadioButtonInputClass = "custom-control-input small";
+    public const string DefaultRadioButtonInputClass = "custom-control-input";
 
     /// <summary>
     /// Default Radio Button Label Class
     /// </summary>
-    public const string DefaultRadioButtonLabelClass = "custom-control-label small";
+    public const string DefaultRadioButtonLabelClass = "custom-control-label font-weight-bold font-italic small";
 }

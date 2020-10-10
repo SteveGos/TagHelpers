@@ -19,7 +19,7 @@ namespace WebDemo.Domain
         [Required(ErrorMessage = "{0} required.", AllowEmptyStrings = false)]
         public bool IsPaid { get; set; }
 
-        [Display(Name = "OverDue")]
+        [Display(Name = "Over Due")]
         public bool? IsOverDue { get; set; }
 
         [Display(Name = "Amount")]

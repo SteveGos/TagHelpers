@@ -23,25 +23,28 @@ public abstract class VhFormPropTagHelper : TagHelper
     // HTML Attribute Names
     private const string _forAttributeName = "asp-for";
 
-    private const string _bsCol = "bsCol";
-    private const string _boolTrue = "boolTrue";
-    private const string _boolFalse = "boolFalse";
-    private const string _boolNull = "boolNull";
+    private const string _bsCol = "bs-Col";
+    private const string _boolTrue = "bool-True";
+    private const string _boolFalse = "bool-False";
+    private const string _boolNull = "bool-Null";
 
     private const string _enumSelList = "enumSelList";
 
     // Class Append Attributes
 
     private const string _classBsColumnWrapper = "classBsColumnWrapper"; // Column Wrapper
-    private const string _classInput = "classInput"; // Property Input/Display
-    private const string _classLabel = "classLabel"; // Label
-    private const string _classValidate = "classValidate"; // Validate
+    private const string _classInput = "class-Input-Display"; // Property Input/Display
+    private const string _classLabel = "class-Label"; // Label
+    private const string _classValidate = "class-Validate"; // Validate
 
     // Label Override
-    private const string _labelOverride = "labelOverride";
+    private const string _labelOverride = "label-Override";
 
     // No Label - Do not write a label
-    private const string _noLabel = "noLabel";
+    private const string _noLabel = "no-Label";
+
+    // No Wrapper - Do not wrap in bootstrap column
+    private const string _inLine = "in-Line";
 
     // Boolean Defaults...
 
@@ -118,6 +121,15 @@ public abstract class VhFormPropTagHelper : TagHelper
     /// </value>
     [HtmlAttributeName(_noLabel)]
     public bool NoLabel { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to render the wrapper tag with d-inline and without a default bootstrap column.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> renders wrapper d-inline without column;.
+    /// </value>
+    [HtmlAttributeName(_inLine)]
+    public bool InLine { get; set; }
 
     // HTML Attributes
 
@@ -322,8 +334,6 @@ public abstract class VhFormPropTagHelper : TagHelper
         attrs = oType?.GetProperty(For.ModelExplorer.Metadata.Name)?.GetCustomAttributes(typeof(ComputedOptionallyAttribute), false);
         var computedOptionallyAttribute = (ComputedOptionallyAttribute)attrs?.FirstOrDefault();
 
-      
-
         var isComputed = computedAttribute != null;
         var isComputedOptionally = computedOptionallyAttribute != null;
         //isQualChar = qualCharAttribute != null;
@@ -442,14 +452,32 @@ public abstract class VhFormPropTagHelper : TagHelper
         // Append / Adjust Outer Bootstrap Column Div as needed
         string classAttr;
 
-        if (vhTemplateType == VhTemplateTypeEnum.VhBool && booleanOption == VhBooleanRenderEnum.CheckBox)
+        string classAttrNoWrapper = string.Empty;
+
+        //if (NoWrapper)
+        //{
+        //    classAttrNoWrapper = "d-inline";
+        //}
+
+        string wrapperClass;
+
+        if (InLine)
         {
-            classAttr = RemoveDupAttributes($"{VhClass.DefaultWrapperDivClass} {BsCol} {ClassBsColl} {VhClass.AlignSelfCenter}");
+            wrapperClass = $"{VhClass.DefaultWrapperInlineClass} {BsCol} {ClassBsColl}";
         }
         else
         {
+            wrapperClass = $"{VhClass.DefaultWrapperClass} {BsCol} {ClassBsColl}";
+        }
+
+        if (vhTemplateType == VhTemplateTypeEnum.VhBool && booleanOption == VhBooleanRenderEnum.CheckBox)
+        {
             // align-self-center
-            classAttr = RemoveDupAttributes($"{VhClass.DefaultWrapperDivClass} {BsCol} {ClassBsColl}");
+            classAttr = RemoveDupAttributes($"{wrapperClass} {VhClass.AlignSelfCenter}");
+        }
+        else
+        {
+            classAttr = RemoveDupAttributes($"{wrapperClass}");
         }
 
         outputTagHelper.Attributes.SetAttribute("class", classAttr);
