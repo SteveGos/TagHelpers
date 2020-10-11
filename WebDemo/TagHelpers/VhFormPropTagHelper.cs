@@ -170,7 +170,7 @@ public abstract class VhFormPropTagHelper : TagHelper
     public string BoolNull { get; set; } // = "n/a";
 
     /// <summary>
-    /// Gets or sets the selection list.
+    /// Gets or sets the selection list.  Not fully implemented, use to override enumeration selection list
     /// </summary>
     /// <value>
     /// The selection list.
