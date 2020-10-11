@@ -158,7 +158,6 @@ public string BoolFalse { get; set; } // = "No";
 [HtmlAttributeName(_boolNull)]
 public string BoolNull { get; set; } // = "n/a";
 
-
 /// <summary>
 /// Gets or sets the selection list.  Not fully implemented, use to override enumeration selection list
 /// </summary>
