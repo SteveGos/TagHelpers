@@ -3,6 +3,7 @@
 Tag Helper for displaying and editing of model properties.  The goal is to simplify the rendering of properties and 
 keep continuity in the rendering of such properties so that a common UI look and feel is established.
 
+Project has a Demo Web application.  For all features see project source.
 
 **With the tag helper**
 
@@ -112,7 +113,7 @@ keep continuity in the rendering of such properties so that a common UI look and
 ```html
 <div class="row form-horizontal">
     <vh-form-display-link asp-for="@Model.ProjectName" label-Override="Project">
-        <a asp-page="/Index" asp-area="" asp-route-id="@Model.ProjectId" />
+        <a asp-page="/Projects/Index" asp-area="" asp-route-id="@Model.ProjectId" />
     </vh-form-display-link>
 </div>
 ```
