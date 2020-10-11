@@ -1,0 +1,114 @@
+﻿@page
+@model DisplayNoTagModel
+@{
+    ViewData["Title"] = "Display (w/o Tag Helper)";
+}
+
+<h3>@ViewData["Title"]</h3>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button data-toggle="tooltip" title="Dismiss" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <b>Validation Errors - @DateTime.Now</b>
+        @Html.ValidationSummary(false)
+    </div>
+}
+
+<div class="row form-horizontal">
+
+    <div class="@VhClass.DefaultWrapperClass @VhCol.md6">
+        <label asp-for="@Model.Invoice.Name" class="@VhClass.DefaultLabelClass"></label>
+        <div class="@VhClass.DefaultDisplayClass">@Html.DisplayFor(o => Model.Invoice.Name)</div>
+    </div>
+
+    <div class="@VhClass.DefaultWrapperClass @VhCol.md6">
+        <label asp-for="@Model.Invoice.StoreBranch" class="@VhClass.DefaultLabelClass"></label>
+        <div class="@VhClass.DefaultDisplayClass">@Html.DisplayFor(o => Model.Invoice.StoreBranch)</div>
+    </div>
+
+    <div class="@VhClass.DefaultWrapperClass @VhCol.md3">
+        <label asp-for="@Model.Invoice.Amount" class="@VhClass.DefaultLabelClass "></label>
+        <div class="@VhClass.DefaultDisplayClass @VhClass.ComputedOptionally">@Html.DisplayFor(o => Model.Invoice.Amount)</div>
+    </div>
+
+    <div class="@VhClass.DefaultWrapperClass @VhCol.md3">
+        <label asp-for="@Model.Invoice.Tax" class="@VhClass.DefaultLabelClass"></label>
+        <div class="@VhClass.DefaultDisplayClass @VhClass.Computed">@Html.DisplayFor(o => Model.Invoice.Tax)</div>
+    </div>
+
+    <div class="@VhClass.DefaultWrapperClass @VhCol.md3">
+        <label asp-for="@Model.Invoice.InvoiceStatus" class="@VhClass.DefaultLabelClass"></label>
+        <div class="@VhClass.DefaultDisplayClass">@Html.DisplayFor(o => Model.Invoice.InvoiceStatus)</div>
+    </div>
+
+    <div class="@VhClass.DefaultWrapperClass @VhCol.md3">
+        <label asp-for="@Model.Invoice.PaymentOptions" class="@VhClass.DefaultLabelClass"></label>
+        <div class="@VhClass.DefaultDisplayClass">@Html.DisplayFor(o => Model.Invoice.PaymentOptions)</div>
+    </div>
+
+    <div class="@VhClass.DefaultWrapperClass @VhCol.md3 align-self-center">
+        <div class="@VhClass.DefaultCheckboxCustomClass">
+            <input type="checkbox" asp-for="@Model.Invoice.IsPaid" class="@VhClass.DefaultCheckboxInputClass" disabled />
+            <label asp-for="@Model.Invoice.IsPaid" class="@VhClass.DefaultCheckboxLabelClass"></label>
+        </div>
+    </div>
+
+    <div class="@VhClass.DefaultWrapperClass @VhCol.md3 align-self-center">
+        <label asp-for="@Model.Invoice.IsOverDue" class="@VhClass.DefaultLabelClass"></label>
+        <div class=@VhClass.DefaultCheckboxCustomClass>
+            @if (Model.Invoice.IsOverDue.HasValue && Model.Invoice.IsOverDue.Value)
+            {
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input asp-for="@Model.Invoice.IsOverDue"
+                           type="radio" class="custom-control-input onclick-submitclosestform" id="ShowGridViewTrue" value="true" checked disabled />
+                    <label class="custom-control-label" for="ShowGridViewTrue">Yes</label>
+                </div>
+            }
+            else
+            {
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input asp-for="@Model.Invoice.IsOverDue"
+                           type="radio" class="custom-control-input onclick-submitclosestform" id="ShowGridViewTrue" value="true" disabled />
+                    <label class="custom-control-label" for="ShowGridViewTrue">Yes</label>
+                </div>
+            }
+
+            @if (Model.Invoice.IsOverDue.HasValue && Model.Invoice.IsOverDue.Value)
+            {
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input asp-for="@Model.Invoice.IsOverDue"
+                           type="radio" class="custom-control-input onclick-submitclosestform" id="ShowGridViewFalse" value="false" checked disabled />
+                    <label class="custom-control-label" for="ShowGridViewFalse">No</label>
+                </div>
+            }
+            else
+            {
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input asp-for="@Model.Invoice.IsOverDue"
+                           type="radio" class="custom-control-input onclick-submitclosestform" id="ShowGridViewFalse" value="false" disabled />
+                    <label class="custom-control-label" for="ShowGridViewFalse">No</label>
+                </div>
+            }
+
+            @if (!Model.Invoice.IsOverDue.HasValue)
+            {
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input asp-for="@Model.Invoice.IsOverDue"
+                           type="radio" class="custom-control-input onclick-submitclosestform" id="ShowGridViewNull" value="true" checked disabled />
+                    <label class="custom-control-label" for="ShowGridViewNull">n/a</label>
+                </div>
+            }
+            else
+            {
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input asp-for="@Model.Invoice.IsOverDue"
+                           type="radio" class="custom-control-input onclick-submitclosestform" id="ShowGridViewNull" value="" disabled />
+                    <label class="custom-control-label" for="ShowGridViewNull">n/a</label>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<partial name="Common" model="@Model" view-data="ViewData" />

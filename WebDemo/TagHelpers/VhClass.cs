@@ -47,13 +47,10 @@ public static partial class VhClass
 
     // Check Box
 
-  
-
-
     /// <summary>
     /// Default Check box Custom Class
     /// </summary>
-    public const string DefaultCheckboxCustomClass = "custom-control custom-checkbox d-inline";
+    public const string DefaultCheckboxCustomClass = "custom-control custom-checkbox custom-control-inline";
 
     /// <summary>
     /// Default Check box Input Class
@@ -70,7 +67,7 @@ public static partial class VhClass
     /// <summary>
     /// Default Radio Button Custom Class
     /// </summary>
-    public const string DefaultRadioButtonCustomClass = "custom-control custom-radio d-inline";
+    public const string DefaultRadioButtonCustomClass = "custom-control custom-radio custom-control-inline";
 
     /// <summary>
     /// Default Radio Button Input Class

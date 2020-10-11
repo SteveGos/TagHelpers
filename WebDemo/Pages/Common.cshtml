@@ -1,0 +1,33 @@
+﻿@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<hr />
+
+<div class="row form-horizontal">
+    <div class="col-12">
+        <label asp-for="@Model.Invoice.Amount" class="@VhClass.DefaultLabelClass"></label> has attribute <b>[ComputedOptionally]</b> which has colored border (see Tag Helper - Application specific logic).
+    </div>
+    <div class="col-12">
+        <label asp-for="@Model.Invoice.Tax" class="@VhClass.DefaultLabelClass"></label> has attribute <b>[Computed]</b> which has colored border (see Tag Helper - Application specific logic).
+    </div>
+</div>
+
+<div class="row form-horizontal">
+    <div class="col">
+        You can also display a property as a link.
+    </div>
+</div>
+
+<hr />
+
+@{
+    Model.PageLink = "Edit - Using Tag Helper";
+}
+
+<div class="row form-horizontal">
+    <vh-form-display-link asp-for="@Model.PageLink" label-Override="Edit Page - Using Tag Builder ">
+        <a asp-page="/Edit" asp-area="" asp-route-id="" />
+    </vh-form-display-link>
+</div>

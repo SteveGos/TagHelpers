@@ -24,13 +24,13 @@ namespace WebDemo.Domain
 
         [Display(Name = "Amount")]
         [DataType(DataType.Currency)]
-        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = false)]
         [ComputedOptionally]
         public double Amount { get; set; }
 
         [Display(Name = "Tax")]
         [DataType(DataType.Currency)]
-        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = false)]
         [Computed]
         public double Tax { get; set; }
 

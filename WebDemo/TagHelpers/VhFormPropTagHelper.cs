@@ -340,11 +340,6 @@ public abstract class VhFormPropTagHelper : TagHelper
 
         if (isComputed || isComputedOptionally)
         {
-            if (TagMode == TagModeEnum.Edit)
-            {
-                procesTageMode = TagModeEnum.Display;
-            }
-
             switch (vhTemplateType)
             {
                 case VhTemplateTypeEnum.VhBool:
@@ -566,7 +561,7 @@ public abstract class VhFormPropTagHelper : TagHelper
 
             IHtmlContent innerDiv;
 
-            switch (TagMode)
+            switch (procesTageMode)
             {
                 case TagModeEnum.DisplayLink:
                 case TagModeEnum.Display:
@@ -655,16 +650,17 @@ public abstract class VhFormPropTagHelper : TagHelper
             guid = Guid.NewGuid().ToString();
 
             inputElement = await CreateRadioButtonElement(context, boolValue: true, idAttr: guid);
-            labelElement = await CreateRadioButtonlLabelElement(context, idAttr: guid, displayNameString: BoolTrue);
+            inputElement.Attributes.RemoveAll("checked");
 
             if (For.Model != null)
             {
-                if ((bool)(For.Model))
+                if ((bool)For.Model == true)
                 {
-                    inputElement.Attributes.RemoveAll("checked");
                     inputElement.Attributes.Add(new TagHelperAttribute("checked"));
                 }
             }
+
+            labelElement = await CreateRadioButtonlLabelElement(context, idAttr: guid, displayNameString: BoolTrue);
 
             switch (procesTageMode)
             {
@@ -708,17 +704,19 @@ public abstract class VhFormPropTagHelper : TagHelper
 
             guid = Guid.NewGuid().ToString();
 
-            inputElement = await CreateRadioButtonElement(context, boolValue: true, idAttr: guid);
-            labelElement = await CreateRadioButtonlLabelElement(context, idAttr: guid, displayNameString: BoolFalse);
+            inputElement = await CreateRadioButtonElement(context, boolValue: false, idAttr: guid);
+
+            inputElement.Attributes.RemoveAll("checked");
 
             if (For.Model != null)
             {
-                if (!(bool)(For.Model))
+                if ((bool)For.Model == false)
                 {
-                    inputElement.Attributes.RemoveAll("checked");
                     inputElement.Attributes.Add(new TagHelperAttribute("checked"));
                 }
             }
+
+            labelElement = await CreateRadioButtonlLabelElement(context, idAttr: guid, displayNameString: BoolFalse);
 
             switch (procesTageMode)
             {
@@ -754,13 +752,15 @@ public abstract class VhFormPropTagHelper : TagHelper
                 guid = Guid.NewGuid().ToString();
 
                 inputElement = await CreateRadioButtonElement(context, boolValue: true, idAttr: guid);
-                labelElement = await CreateRadioButtonlLabelElement(context, idAttr: guid, displayNameString: BoolNull);
+
+                inputElement.Attributes.RemoveAll("checked");
 
                 if (For.Model == null)
                 {
-                    inputElement.Attributes.RemoveAll("checked");
                     inputElement.Attributes.Add(new TagHelperAttribute("checked"));
                 }
+
+                labelElement = await CreateRadioButtonlLabelElement(context, idAttr: guid, displayNameString: BoolNull);
 
                 switch (procesTageMode)
                 {
@@ -856,7 +856,7 @@ public abstract class VhFormPropTagHelper : TagHelper
 
         TagBuilder htmlContent;
 
-        switch (TagMode)
+        switch (procesTageMode)
         {
             case TagModeEnum.DisplayLink:
             case TagModeEnum.Display:

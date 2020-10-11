@@ -1,10 +1,31 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Display (w/ Tag Helper)";
 }
 
-@*<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>*@
+<h3>@ViewData["Title"]</h3>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button data-toggle="tooltip" title="Dismiss" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <b>Validation Errors - @DateTime.Now</b>
+        @Html.ValidationSummary(false)
+    </div>
+}
+
+<div class="row form-horizontal">
+    <vh-form-display asp-for="@Model.Invoice.Name" bs-Col="@VhCol.md6"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.StoreBranch" bs-Col="@VhCol.md6"></vh-form-display>
+
+    <vh-form-display asp-for="@Model.Invoice.Amount" bs-Col="@VhCol.md3"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.Tax" bs-Col="@VhCol.md3"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.InvoiceStatus" bs-Col="@VhCol.md3"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.PaymentOptions" bs-Col="@VhCol.md3"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.IsPaid" bs-Col="@VhCol.md3"></vh-form-display>
+
+    <vh-form-display asp-for="@Model.Invoice.IsOverDue" bs-Col="@VhCol.md3"></vh-form-display>
+</div>
+
+<partial name="Common" model="@Model" view-data="ViewData" />

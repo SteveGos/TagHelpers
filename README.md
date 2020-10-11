@@ -10,13 +10,15 @@ keep continuity in the rendering of such properties so that a common UI look and
 @model MyDomain.Project
 
 <div class="row form-horizontal">
-    <vh-form-display asp-for="@Model.Description" bs-Col="@VhCol.md6"></vh-form-display>
-    <vh-form-display asp-for="@Model.Location" bs-Col="@VhCol.md6"></vh-form-display>
-    <vh-form-display asp-for="@Model.ProjectManager"></vh-form-display>
-    <vh-form-display asp-for="@Model.AdressLine1"></vh-form-display>
-    <vh-form-display asp-for="@Model.AdressLine2"></vh-form-display>
-    <vh-form-display asp-for="@Model.CityStateZip"></vh-form-display>
-    <vh-form-display asp-for="@Model.Country"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.Name" bs-Col="@VhCol.md6"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.StoreBranch" bs-Col="@VhCol.md6"></vh-form-display>
+
+    <vh-form-display asp-for="@Model.Invoice.Amount" bs-Col="@VhCol.md3"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.Tax" bs-Col="@VhCol.md3"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.InvoiceStatus" bs-Col="@VhCol.md3"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.PaymentOptions" bs-Col="@VhCol.md3"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.IsPaid" bs-Col="@VhCol.md2"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.IsOverDue" bs-Col="@VhCol.md4"></vh-form-display>
 </div>
 ```
 
@@ -64,4 +66,47 @@ keep continuity in the rendering of such properties so that a common UI look and
 
 </div>
 ```
+
+
+#### Available Tag Helpers
+
+**Display**
+
+```html
+@model MyDomain.Project
+
+<div class="row form-horizontal">
+    <vh-form-display asp-for="@Model.Invoice.Name" bs-Col="@VhCol.md6"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.StoreBranch" bs-Col="@VhCol.md6"></vh-form-display>
+
+    <vh-form-display asp-for="@Model.Invoice.Amount" bs-Col="@VhCol.md3"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.Tax" bs-Col="@VhCol.md3"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.InvoiceStatus" bs-Col="@VhCol.md3"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.PaymentOptions" bs-Col="@VhCol.md3"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.IsPaid" bs-Col="@VhCol.md2"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.IsOverDue" bs-Col="@VhCol.md4"></vh-form-display>
+</div>
+```
+
+**Edit**
+
+```html
+@model MyDomain.Project
+
+<div class="row form-horizontal">
+    <vh-form-edit asp-for="@Model.Invoice.Name" bs-Col="@VhCol.md6"></vh-form-edit>
+    <vh-form-edit asp-for="@Model.Invoice.StoreBranch" bs-Col="@VhCol.md6"></vh-form-edit>
+
+    <vh-form-edit asp-for="@Model.Invoice.Amount" bs-Col="@VhCol.md3"></vh-form-edit>
+    <vh-form-edit asp-for="@Model.Invoice.Tax" bs-Col="@VhCol.md3"></vh-form-edit>
+    <vh-form-edit asp-for="@Model.Invoice.InvoiceStatus" bs-Col="@VhCol.md3"></vh-form-edit>
+    <vh-form-edit asp-for="@Model.Invoice.PaymentOptions" bs-Col="@VhCol.md3"></vh-form-edit>
+    <vh-form-edit asp-for="@Model.Invoice.IsPaid" bs-Col="@VhCol.md2"></vh-form-edit>
+    <vh-form-edit asp-for="@Model.Invoice.IsOverDue" bs-Col="@VhCol.md4"></vh-form-edit>
+</div>
+```
+
+**Link**
+
+
 

@@ -1,0 +1,132 @@
+﻿@page
+@model EditNoTagModel
+@{
+    ViewData["Title"] = "Edit (w/o Tag Helper)";
+}
+
+<h3>@ViewData["Title"]</h3>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button data-toggle="tooltip" title="Dismiss" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <b>Validation Errors - @DateTime.Now</b>
+        @Html.ValidationSummary(false)
+    </div>
+}
+
+<form autocomplete="off" method="post">
+    <div class="row form-horizontal">
+
+        <div class="@VhClass.DefaultWrapperClass @VhCol.md6">
+            <label asp-for="@Model.Invoice.Name" class="@VhClass.DefaultLabelClass"></label>
+            <input asp-for="@Model.Invoice.Name" class="form-control" />
+            <span asp-validation-for="@Model.Invoice.Name" class="text-danger"></span>
+        </div>
+
+        <div class="@VhClass.DefaultWrapperClass @VhCol.md6">
+            <label asp-for="@Model.Invoice.StoreBranch" class="@VhClass.DefaultLabelClass"></label>
+            <input asp-for="@Model.Invoice.StoreBranch" class="form-control" />
+            <span asp-validation-for="@Model.Invoice.StoreBranch" class="text-danger"></span>
+        </div>
+
+        <div class="@VhClass.DefaultWrapperClass @VhCol.md3">
+            <label asp-for="@Model.Invoice.Amount" class="@VhClass.DefaultLabelClass"></label>
+            <input asp-for="@Model.Invoice.Amount" class="form-control" />
+            <span asp-validation-for="@Model.Invoice.Amount" class="text-danger"></span>
+        </div>
+
+        <div class="@VhClass.DefaultWrapperClass @VhCol.md3">
+            <label asp-for="@Model.Invoice.Tax" class="@VhClass.DefaultLabelClass"></label>
+            <input asp-for="@Model.Invoice.Tax" class="form-control" />
+            <span asp-validation-for="@Model.Invoice.Tax" class="text-danger"></span>
+        </div>
+
+        <div class="@VhClass.DefaultWrapperClass @VhCol.md3">
+            <label asp-for="@Model.Invoice.InvoiceStatus" class="@VhClass.DefaultLabelClass"></label>
+            <input asp-for="@Model.Invoice.InvoiceStatus" class="form-control" />
+            <span asp-validation-for="@Model.Invoice.Tax" class="text-danger"></span>
+        </div>
+        <div class="@VhClass.DefaultWrapperClass @VhCol.md3">
+            <label asp-for="@Model.Invoice.PaymentOptions" class="@VhClass.DefaultLabelClass"></label>
+            <input asp-for="@Model.Invoice.PaymentOptions" class="form-control" />
+            <span asp-validation-for="@Model.Invoice.PaymentOptions" class="text-danger"></span>
+        </div>
+
+        <div class="@VhClass.DefaultWrapperClass @VhCol.md3 align-self-center">
+            <div class="@VhClass.DefaultCheckboxCustomClass">
+                <input type="checkbox" asp-for="@Model.Invoice.IsPaid" class="@VhClass.DefaultCheckboxInputClass" />
+                <label asp-for="@Model.Invoice.IsPaid" class="@VhClass.DefaultCheckboxLabelClass"></label>
+            </div>
+        </div>
+
+        <div class="@VhClass.DefaultWrapperClass @VhCol.md3 align-self-center">
+            <label asp-for="@Model.Invoice.IsOverDue" class="@VhClass.DefaultLabelClass"></label>
+            <div class=@VhClass.DefaultCheckboxCustomClass>
+                @if (Model.Invoice.IsOverDue.HasValue && Model.Invoice.IsOverDue.Value)
+                {
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input asp-for="@Model.Invoice.IsOverDue"
+                               type="radio" class="custom-control-input onclick-submitclosestform" id="ShowGridViewTrue" value="true" checked />
+                        <label class="custom-control-label" for="ShowGridViewTrue">Yes</label>
+                    </div>
+                }
+                else
+                {
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input asp-for="@Model.Invoice.IsOverDue"
+                               type="radio" class="custom-control-input onclick-submitclosestform" id="ShowGridViewTrue" value="true" />
+                        <label class="custom-control-label" for="ShowGridViewTrue">Yes</label>
+                    </div>
+                }
+
+                @if (Model.Invoice.IsOverDue.HasValue && Model.Invoice.IsOverDue.Value)
+                {
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input asp-for="@Model.Invoice.IsOverDue"
+                               type="radio" class="custom-control-input onclick-submitclosestform" id="ShowGridViewFalse" value="false" checked />
+                        <label class="custom-control-label" for="ShowGridViewFalse">No</label>
+                    </div>
+                }
+                else
+                {
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input asp-for="@Model.Invoice.IsOverDue"
+                               type="radio" class="custom-control-input onclick-submitclosestform" id="ShowGridViewFalse" value="false" />
+                        <label class="custom-control-label" for="ShowGridViewFalse">No</label>
+                    </div>
+                }
+
+                @if (!Model.Invoice.IsOverDue.HasValue)
+                {
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input asp-for="@Model.Invoice.IsOverDue"
+                               type="radio" class="custom-control-input onclick-submitclosestform" id="ShowGridViewNull" value="" checked />
+                        <label class="custom-control-label" for="ShowGridViewNull">n/a</label>
+                    </div>
+                }
+                else
+                {
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input asp-for="@Model.Invoice.IsOverDue"
+                               type="radio" class="custom-control-input onclick-submitclosestform" id="ShowGridViewNull" value="" />
+                        <label class="custom-control-label" for="ShowGridViewNull">n/a</label>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <hr class="hrline" />
+
+    <div class="row form-horizontal">
+        <div class="@VhClass.DefaultWrapperClass">
+
+            <input type="submit" class="btn btn-success" />
+            &nbsp;
+            <a asp-page="/Index" asp-area="" asp-route-id="" class="btn btn-danger">Cancel</a>
+        </div>
+    </div>
+</form>
+
+<partial name="Common" model="@Model" view-data="ViewData" />
