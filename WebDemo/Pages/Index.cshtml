@@ -25,7 +25,7 @@
     <vh-form-display asp-for="@Model.Invoice.PaymentOptions" bs-Col="@VhCol.md3"></vh-form-display>
     <vh-form-display asp-for="@Model.Invoice.IsPaid" bs-Col="@VhCol.md3"></vh-form-display>
 
-    <vh-form-display asp-for="@Model.Invoice.IsOverDue" bs-Col="@VhCol.md3"></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.IsOverDue" bs-Col="@VhCol.md3" bool-True="Yep" bool-False="Nope" ></vh-form-display>
 </div>
 
 <partial name="Common" model="@Model" view-data="ViewData" />

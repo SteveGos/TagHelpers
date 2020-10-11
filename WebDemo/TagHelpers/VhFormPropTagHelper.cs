@@ -131,60 +131,60 @@ public abstract class VhFormPropTagHelper : TagHelper
     [HtmlAttributeName(_inLine)]
     public bool InLine { get; set; }
 
-// HTML Attributes
+    // HTML Attributes
 
-/// <summary>
-/// Gets or sets for expression.
-/// </summary>
-/// <value>
-/// For.
-/// </value>
-[HtmlAttributeName(_forAttributeName)]
-public ModelExpression For { get; set; }
+    /// <summary>
+    /// Gets or sets for expression.
+    /// </summary>
+    /// <value>
+    /// For.
+    /// </value>
+    [HtmlAttributeName(_forAttributeName)]
+    public ModelExpression For { get; set; }
 
-/// <summary>
-/// Gets or sets the Bootstrap column.
-/// </summary>
-/// <value>
-/// The Bootstrap Column
-/// </value>
-[HtmlAttributeName(_bsCol)]
-public string BsCol { get; set; }
+    /// <summary>
+    /// Gets or sets the Bootstrap column.
+    /// </summary>
+    /// <value>
+    /// The Bootstrap Column
+    /// </value>
+    [HtmlAttributeName(_bsCol)]
+    public string BsCol { get; set; }
 
-/// <summary>
-/// The boolean true Display Value if not Check Box.
-/// </summary>
-[HtmlAttributeName(_boolTrue)]
-public string BoolTrue { get; set; } // =  "Yes";
+    /// <summary>
+    /// The boolean true Display Value if not Check Box.
+    /// </summary>
+    [HtmlAttributeName(_boolTrue)]
+    public string BoolTrue { get; set; } // =  "Yes";
 
-/// <summary>
-/// The boolean false Display Value if not Check Box.
-/// </summary>
-[HtmlAttributeName(_boolFalse)]
-public string BoolFalse { get; set; } // = "No";
+    /// <summary>
+    /// The boolean false Display Value if not Check Box.
+    /// </summary>
+    [HtmlAttributeName(_boolFalse)]
+    public string BoolFalse { get; set; } // = "No";
 
-/// <summary>
-/// The boolean null Display Value if not Check Box.
-/// </summary>
-[HtmlAttributeName(_boolNull)]
-public string BoolNull { get; set; } // = "n/a";
+    /// <summary>
+    /// The boolean null Display Value if not Check Box.
+    /// </summary>
+    [HtmlAttributeName(_boolNull)]
+    public string BoolNull { get; set; } // = "n/a";
 
-/// <summary>
-/// Gets or sets the enumeration selection list.
-/// </summary>
-/// <value>
-/// The enumeration selection list.
-/// </value>
-[HtmlAttributeName(_enumSelList)]
-public IEnumerable<SelectListItem> EnumSelList { get; set; }
+    /// <summary>
+    /// Gets or sets the selection list.
+    /// </summary>
+    /// <value>
+    /// The selection list.
+    /// </value>
+    [HtmlAttributeName(_enumSelList)]
+    public IEnumerable<SelectListItem> EnumSelList { get; set; } 
 
-/// <summary>
-/// Gets the Tag Helper HTML generator.
-/// </summary>
-/// <value>
-/// The Tag Helper HTML generator.
-/// </value>
-public IHtmlGenerator Generator { get; }
+    /// <summary>
+    /// Gets the Tag Helper HTML generator.
+    /// </summary>
+    /// <value>
+    /// The Tag Helper HTML generator.
+    /// </value>
+    public IHtmlGenerator Generator { get; }
 
     // Override Properties
 

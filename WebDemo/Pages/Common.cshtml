@@ -14,13 +14,13 @@
     </div>
 </div>
 
+<hr />
+
 <div class="row form-horizontal">
     <div class="col">
         You can also display a property as a link.
     </div>
 </div>
-
-<hr />
 
 @{
     Model.PageLink = "Edit - Using Tag Helper";
@@ -30,4 +30,13 @@
     <vh-form-display-link asp-for="@Model.PageLink" label-Override="Edit Page - Using Tag Builder ">
         <a asp-page="/Edit" asp-area="" asp-route-id="" />
     </vh-form-display-link>
+</div>
+
+
+<hr />
+
+<div class="row form-horizontal">
+    <div class="col">
+       For all features, code source.
+    </div>
 </div>

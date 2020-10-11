@@ -158,20 +158,13 @@ public string BoolFalse { get; set; } // = "No";
 [HtmlAttributeName(_boolNull)]
 public string BoolNull { get; set; } // = "n/a";
 
-/// <summary>
-/// Gets or sets the enumeration selection list.
-/// </summary>
-/// <value>
-/// The enumeration selection list.
-/// </value>
-[HtmlAttributeName(_enumSelList)]
-public IEnumerable<SelectListItem> EnumSelList { get; set; }
 
 /// <summary>
-/// Gets the Tag Helper HTML generator.
+/// Gets or sets the selection list.
 /// </summary>
 /// <value>
-/// The Tag Helper HTML generator.
+/// The selection list.
 /// </value>
-public IHtmlGenerator Generator { get; }
+[HtmlAttributeName(_enumSelList)]
+public IEnumerable<SelectListItem> EnumSelList { get; set; } 
 ```
