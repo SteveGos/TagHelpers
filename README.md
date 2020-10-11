@@ -106,7 +106,13 @@ keep continuity in the rendering of such properties so that a common UI look and
 </div>
 ```
 
-**Link**
+**Link - Display Property which is also a link**
 
 
-
+```html
+<div class="row form-horizontal">
+    <vh-form-display-link asp-for="@Model.ProjectName" label-Override="Project">
+        <a asp-page="/Index" asp-area="" asp-route-id="@Model.ProjectId" />
+    </vh-form-display-link>
+</div>
+```
