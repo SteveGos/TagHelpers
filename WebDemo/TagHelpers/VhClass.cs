@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿// MIT License - See __LICENSE_AND_INFO file for Licensing details and requirements
+
+/// <summary>
 /// View Helper Bootstrap Classes Used by <see cref="VhFormPropTagHelper"/> for determining how property is rendered.
 /// </summary>
 public static partial class VhClass

@@ -1,4 +1,6 @@
-﻿using System;
+﻿// MIT License - See __LICENSE_AND_INFO file for Licensing details and requirements
+
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 

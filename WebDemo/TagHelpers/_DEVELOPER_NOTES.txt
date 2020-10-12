@@ -1,10 +1,18 @@
 ﻿
+
+TO USE Copy ALL CONTENTS into your web applications.  
+
+VhClass_WebDemoSpecific.cs is specific to this demo for showing some custom tailoring to your application.  
+
+Logic for it is located in VhFormPropTagHelper.cs.
+
+******************************
+
 There is no namespace defined in the .CS files.  This is so that they code all lives in the default namespace.  
 
 This also allows the constants in VhClass.cs and VhColl.cs to be accessible in view if you want to leverage the same UI look and feel as the tag helper.
 
 - Example @VhCol.DefaultLabelClass 
-
 
 Don't forget to add assembly into the _ViewImports.cshtml  as seen below.  Were WebDemo would be your ASEMBLEY NAME.  
 

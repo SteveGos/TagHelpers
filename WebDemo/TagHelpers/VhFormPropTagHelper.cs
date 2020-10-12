@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Html;
+﻿// MIT License - See __LICENSE_AND_INFO file for Licensing details and requirements
+
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -12,8 +14,7 @@ using System.Threading.Tasks;
 using VhTagHelperAttributes;
 using WebDemo.Attributes;
 
-// See Application specific logic.
-// -- Has custom formatting for properties with Attributes [ComputedAttribute] and [ComputedOptionallyAttribute]
+// See Application specific logic. Has custom formatting for properties with Attributes [ComputedAttribute] and [ComputedOptionallyAttribute]
 
 /// <summary>
 /// Property render Tag Helper - abstract.
@@ -22,13 +23,13 @@ public abstract class VhFormPropTagHelper : TagHelper
 {
     // HTML Attribute Names
     private const string _forAttributeName = "asp-for";
+
     private const string _aspitems = "asp-items";
 
     private const string _bsCol = "bs-Col";
     private const string _boolTrue = "bool-True";
     private const string _boolFalse = "bool-False";
     private const string _boolNull = "bool-Null";
-
 
     // Class Append Attributes
 

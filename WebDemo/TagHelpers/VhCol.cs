@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿// MIT License - See __LICENSE_AND_INFO file for Licensing details and requirements
+
+/// <summary>
 /// Bootstrap Columns Used.  Recommended to only add values you will be using.
 /// </summary>
 public static class VhCol
