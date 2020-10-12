@@ -160,11 +160,11 @@ public string BoolFalse { get; set; } // = "No";
 public string BoolNull { get; set; } // = "n/a";
 
 /// <summary>
-/// Gets or sets the selection list.  Not fully implemented, use to override enumeration selection list
+/// Gets or sets the selection list.  For a Select List when editing.
 /// </summary>
 /// <value>
 /// The selection list.
 /// </value>
-[HtmlAttributeName(_enumSelList)]
-public IEnumerable<SelectListItem> EnumSelList { get; set; } 
+[HtmlAttributeName(_aspitems)]
+public IEnumerable<SelectListItem> PropertyAspItems { get; set; }
 ```
