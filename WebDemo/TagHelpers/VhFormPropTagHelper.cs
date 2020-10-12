@@ -22,20 +22,20 @@ public abstract class VhFormPropTagHelper : TagHelper
 {
     // HTML Attribute Names
     private const string _forAttributeName = "asp-for";
+    private const string _aspitems = "asp-items";
 
     private const string _bsCol = "bs-Col";
     private const string _boolTrue = "bool-True";
     private const string _boolFalse = "bool-False";
     private const string _boolNull = "bool-Null";
 
-    private const string _enumSelList = "enumSelList";
 
     // Class Append Attributes
 
-    private const string _classBsColumnWrapper = "classBsColumnWrapper"; // Column Wrapper
-    private const string _classInput = "class-Input-Display"; // Property Input/Display
-    private const string _classLabel = "class-Label"; // Label
-    private const string _classValidate = "class-Validate"; // Validate
+    private const string _classColumnWrapper = "class-Column-Wrapper"; // "classBsColumnWrapper"; // Column Wrapper class to append
+    private const string _classInput = "class-Input-Display"; // Input/Display class to append
+    private const string _classLabel = "class-Label"; // Label class to append
+    private const string _classValidate = "class-Validate"; // Validate class to append
 
     // Label Override
     private const string _labelOverride = "label-Override";
@@ -46,11 +46,13 @@ public abstract class VhFormPropTagHelper : TagHelper
     // No Wrapper - Do not wrap in bootstrap column
     private const string _inLine = "in-Line";
 
-    // Boolean Defaults...
+    //  Defaults Values
 
     private const string boolTrueDefault = "Yes";
     private const string boolFalseDefault = "No";
     private const string boolNullDefault = "n/a";
+
+    private const string selectListPickOne = "Pick One";
 
     // Tag Mode...
 
@@ -74,7 +76,7 @@ public abstract class VhFormPropTagHelper : TagHelper
     /// <value>
     /// Value to append to the Boot Strap Column
     /// </value>
-    [HtmlAttributeName(_classBsColumnWrapper)]
+    [HtmlAttributeName(_classColumnWrapper)]
     public string ClassBsColl { get; set; }
 
     /// <summary>
@@ -175,8 +177,8 @@ public abstract class VhFormPropTagHelper : TagHelper
     /// <value>
     /// The selection list.
     /// </value>
-    [HtmlAttributeName(_enumSelList)]
-    public IEnumerable<SelectListItem> EnumSelList { get; set; } 
+    [HtmlAttributeName(_aspitems)]
+    public IEnumerable<SelectListItem> PropertyAspItems { get; set; }
 
     /// <summary>
     /// Gets the Tag Helper HTML generator.
@@ -823,7 +825,7 @@ public abstract class VhFormPropTagHelper : TagHelper
 
             case TagModeEnum.Edit:
 
-                inputElement = await CreateInputElement(context, appendClass: ClassInput);
+                inputElement = await CreateInputElement(context, appendClass: ClassInput, aspItems: PropertyAspItems);
                 outputTagHelper.Content.AppendHtml(inputElement);
 
                 validationMessageElement = await CreateValidationMessageElement(context, appendClass: ClassValidate);
@@ -880,7 +882,7 @@ public abstract class VhFormPropTagHelper : TagHelper
 
             case TagModeEnum.Edit:
 
-                inputElement = await CreateInputElement(context, appendClass: ClassInput);
+                inputElement = await CreateInputElement(context, appendClass: ClassInput, aspItems: PropertyAspItems);
                 outputTagHelper.Content.AppendHtml(inputElement);
 
                 validationMessageElement = await CreateValidationMessageElement(context, appendClass: ClassValidate);
@@ -923,7 +925,7 @@ public abstract class VhFormPropTagHelper : TagHelper
 
             case TagModeEnum.Edit:
 
-                inputElement = await CreateEnumSelectElement(context, isNullable, appendClass: ClassInput, selectListOverride: EnumSelList);
+                inputElement = await CreateEnumSelectElement(context, isNullable, appendClass: ClassInput, aspItemsOverride: PropertyAspItems);
                 outputTagHelper.Content.AppendHtml(inputElement);
 
                 //inputElement = await CreateInputElement(context);
@@ -972,18 +974,52 @@ public abstract class VhFormPropTagHelper : TagHelper
 
     private async Task<TagHelperOutput> CreateInputElement(
         TagHelperContext context,
-        string appendClass)
+        string appendClass,
+        IEnumerable<SelectListItem> aspItems)
     {
-        InputTagHelper inputTagHelper =
-            new InputTagHelper(Generator)
+        TagHelperOutput tagHelperOutput;
+
+        if (aspItems != null)
+        {
+            var selList = new List<SelectListItem> { new SelectListItem { Value = "", Text = selectListPickOne } };
+            selList.AddRange(aspItems);
+
+            var val = this.For.Model?.ToString();
+
+            if (val != null)
             {
-                For = this.For,
-                ViewContext = this.ViewContext
-            };
+                var curItem = selList.FirstOrDefault(o => o.Value.Equals(val));
+                if (curItem != null)
+                {
+                    curItem.Selected = true;
+                }
+            }
 
-        TagHelperOutput tagHelperOutput = CreateTagHelperOutput("input");
+            SelectTagHelper selectTagHelper =
+                new SelectTagHelper(Generator)
+                {
+                    For = this.For,
+                    ViewContext = this.ViewContext,
+                    Items = selList,
+                };
 
-        await inputTagHelper.ProcessAsync(context, tagHelperOutput);
+            tagHelperOutput = CreateTagHelperOutput("select");
+
+            await selectTagHelper.ProcessAsync(context, tagHelperOutput);
+        }
+        else
+        {
+            InputTagHelper inputTagHelper =
+                new InputTagHelper(Generator)
+                {
+                    For = this.For,
+                    ViewContext = this.ViewContext
+                };
+
+            tagHelperOutput = CreateTagHelperOutput("input");
+
+            await inputTagHelper.ProcessAsync(context, tagHelperOutput);
+        }
 
         var curClassAttributes = tagHelperOutput.Attributes.FirstOrDefault(a => a.Name == "class")?.Value;
         var allClassAttributes = RemoveDupAttributes($"{curClassAttributes} {VhClass.DefaultInputClass} {appendClass}");
@@ -996,16 +1032,16 @@ public abstract class VhFormPropTagHelper : TagHelper
         TagHelperContext context,
         bool isNullable,
         string appendClass,
-        IEnumerable<SelectListItem> selectListOverride)
+        IEnumerable<SelectListItem> aspItemsOverride)
     {
-        var seleList = selectListOverride ?? GetEnumSelect(VhModelType, isNullable);
+        var selectList = aspItemsOverride ?? GetEnumSelect(VhModelType, isNullable);
 
         SelectTagHelper selectTagHelper =
             new SelectTagHelper(Generator)
             {
                 For = this.For,
                 ViewContext = this.ViewContext,
-                Items = seleList
+                Items = selectList
             };
 
         TagHelperOutput tagHelperOutput = CreateTagHelperOutput("select");
@@ -1281,15 +1317,15 @@ public abstract class VhFormPropTagHelper : TagHelper
 
         if (isNullable)
         {
-            retVal.Add(new SelectListItem { Text = "Pick one", Value = string.Empty });
+            retVal.Add(new SelectListItem { Text = selectListPickOne, Value = string.Empty });
         }
         else if (For.Model == null)
         {
-            retVal.Add(new SelectListItem { Text = "Pick one", Value = string.Empty });
+            retVal.Add(new SelectListItem { Text = selectListPickOne, Value = string.Empty });
         }
         else if (!coll.Any(o => o.Id == (int)For.Model))
         {
-            retVal.Add(new SelectListItem { Text = "Pick one", Value = string.Empty });
+            retVal.Add(new SelectListItem { Text = selectListPickOne, Value = string.Empty });
         }
 
         foreach (var item in coll.OrderBy(o => o.Order).ThenBy(o => o.Name).ToList())

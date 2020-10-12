@@ -25,7 +25,15 @@
     <vh-form-display asp-for="@Model.Invoice.PaymentOptions" bs-Col="@VhCol.md3"></vh-form-display>
     <vh-form-display asp-for="@Model.Invoice.IsPaid" bs-Col="@VhCol.md3"></vh-form-display>
 
-    <vh-form-display asp-for="@Model.Invoice.IsOverDue" bs-Col="@VhCol.md3" bool-True="Yep" bool-False="Nope" ></vh-form-display>
+    <vh-form-display asp-for="@Model.Invoice.IsOverDue" bs-Col="@VhCol.md3" bool-True="Yep" bool-False="Nope"></vh-form-display>
+</div>
+
+<hr />
+
+<div class="row form-horizontal">
+    <div class="col-12 text-info small font-italic">
+        * Over Due used the boolean value overrides to override Yes and No with Yep and Nope for a null boolean.
+    </div>
 </div>
 
 <partial name="Common" model="@Model" view-data="ViewData" />
