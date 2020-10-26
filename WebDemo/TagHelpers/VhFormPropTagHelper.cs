@@ -1333,11 +1333,11 @@ public abstract class VhFormPropTagHelper : TagHelper
         {
             if (For.Model != null && (int)For.Model == item.Id)
             {
-                retVal.Add(new SelectListItem { Text = item.Name, Value = item.Code, Selected = true });
+                retVal.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString(), Selected = true });
             }
             else
             {
-                retVal.Add(new SelectListItem { Text = item.Name, Value = item.Code });
+                retVal.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
             }
         }
 
